@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/static/css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="/static/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+     <form class="mui-input-group" action="http://localhost:8080/org.zsl.hnust/user/upload" method="post" enctype="multipart/form-data">
+    <div class="mui-input-row">
+        <label>用户名</label>
+    <input type="text" class="mui-input-clear" placeholder="请输入用户名">
+    </div>
+    <div class="mui-input-row" style="margin: 10px 10px 20px 20px  ;height: 100px; border:1px solid #CCCCCC;" >
+     <textarea class="mui-input-speech mui-input-clear" placeholder="丢了啥"></textarea>
+    </div>
+    <div class="mui-input-row">
+    	<label>图片</label>
+    	<input type="file" name="img" multiple>
+    </div>
+    <div class="mui-button-row" >
+        <button type="button" class="mui-btn mui-btn-primary" >确认</button>
+        <input type="submit" value="提交" class="mui-btn-blue"/>
+    </div>
+</form>
+</html>

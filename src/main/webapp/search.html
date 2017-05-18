@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="static/css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="static/js/jquery.js"></script>
+	</head>
+
+	<body>
+		<script src="static/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()		
+		</script>
+		<script type="text/javascript">
+//			$(document).ready(function(){
+//           $("#reg").click(function(){
+//              username=$("#username").val();
+//              ps=$("#password").val();
+//              $.post("http://localhost:8080/HNUST/user/action/reg.do",{username:username,password:ps},function(data,status){
+//           	if(status=="success"){
+//           		alert('111');
+//           	}
+//           	 alert('2222'+status+data);
+//
+//           })
+//           })
+//           	
+//           
+//            })		
+          $(document).ready(function(){
+          	function todetial(){
+          		mui.alert(this.attr("article"));
+          	}
+          	$(".mui-table-view-cell").click(function(){
+          		 mui.alert(this.attr("article"));
+
+          	})
+          	//获取URL参数
+	       function GetRequest() {
+	        var url = location.search; //获取url中"?"符后的字串
+	        var theRequest = new Object();
+	      if (url.indexOf("?") != -1) {
+	         var str = url.substr(1);
+	         strs = str.split("&");
+	        for(var i = 0; i < strs.length; i ++) {
+	          theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+	       }
+	     }
+	       return theRequest;
+ 	    } 
+          	
+          	
+          	   //根据url获取参数
+            function getQueryString(name) { 
+             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+             var r = window.location.search.substr(1).match(reg); 
+             if (r != null) return unescape(r[2]); return null; 
+             } 
+             
+            function tidetial(){
+            	mui.alert('111111111');
+            }
+               
+           
+          	function initsearch(title,currentPage){
+            $.ajax({
+             type:'get',
+             url:'/HNUST/search.do',
+             contentType:'application/json;charrset=utf-8',
+             data:{title:title,currentPage:currentPage},
+             success:function(data){
+          //mui.alert("nimenhao");
+            //alert(data.currentPage);
+            //获取查询结果并且遍历
+           	var test="static/images/23.jpg";
+           	var currentPage=data.currentPage;
+           	var totalPage=data.totalPage;
+            for(i in data.pageList){
+            	$("#list").append("<li onclick='todetial()' class='mui-table-view-cell mui-media'>  <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+data.pageList[i].articletitle+"    <p class='mui-ellipsis'>"+data.pageList[i].articletitle+".</p>    </div>  </a></li>");
+            }  
+            
+            $("#currentPage").val(currentPage);
+            
+            //设置当前页码
+//          if(1==totalPage){
+//          	$("#lasttPage").attr("class","mui-disabled");
+//          	$("#nextPage").attr("class","mui-disabled");
+//          }else{
+//          	if(currentPage==1){
+//          	$("#lasttPage").attr("class","mui-disabled");
+//          	}
+//          	if(totalPage==currentPage){
+//          	  $("#nextPage").attr("class","mui-disabled");
+//
+//          	}
+//          }
+            
+         }
+       }) 
+          	}
+            
+            $("#nextPage").click(function(){
+             var title=getQueryString("title");
+             var currentPage=$("#currentPage").val();
+            //mui.alert(window.decodeURIComponent(window.atob(title)));
+             var  str=window.decodeURIComponent(window.atob(title));
+             initsearch(str,currentPage+1);
+            })
+          	
+          	 //初始化界面
+          	 //获取64base
+             //将64位base转化成参数
+            var title=getQueryString("title");
+            var currentPage=$("#currentPage").text();
+
+            mui.alert(window.decodeURIComponent(window.atob(title)));
+            var  str=window.decodeURIComponent(window.atob(title));
+            initsearch(str,currentPage);
+            
+            
+//          $("#btn1").click(function(){
+//          	
+//          	var test="static/images/23.jpg";
+//          //	mui.alert(test);
+//          	//使用这个查询
+//                 
+//
+//          	 for(var i=0;i<3;i++){
+//          	  $("ul").append("<li class='mui-table-view-cell mui-media'>  <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+test+" CBD   <p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>      </div>  </a></li>");
+//          	}
+//          });
+//          $("#btn2").click(function(){
+//        
+//        $.ajax({
+//       type:'get',
+//       url:'/HNUST/search.do',
+//       contentType:'application/json;charrset=utf-8',
+//       data:{title:'小米',currentPage:'1'},
+//       success:function(data){
+//        //mui.alert("nimenhao");
+//          alert(data.currentPage);
+//          //获取查询结果并且遍历
+//         	var test="static/images/23.jpg";
+//          for(i in data.pageList){
+//          	$("ul").append("<li class='mui-table-view-cell mui-media'>  <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+data.pageList[i].articletitle+" CBD   <p class='mui-ellipsis'>"+data.pageList[i].articletitle+".</p>      </div>  </a></li>");
+//               
+//        }
+//       }
+//     })  
+//        
+//          });
+          	
+           $.post("/HNUST/postdemo.do",
+           {
+              username:'tangyu',
+              password:'123333333333hahha',
+           },function(result){
+           	mui.alert('123456789'+result.msg);
+           	$("#welcome").text(result.msg);
+           },"json");
+           $("#lost").click(function(){
+           	mui.openWindow({
+             url: '/HNUST/upload.html', 
+             id:'info'
+           	});
+           })
+           
+          })
+          	
+          	
+		</script>
+		<style type="text/css">
+    	.mui-content{
+    		margin-top: 12px;
+    	}
+    	.mui-btn{
+    		width: 95%;
+    		
+    	}
+    </style>
+		<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">detial</h1>
+       </div>
+	</header>
+	  <div class="mui-content">
+              <ul id="list" class="mui-table-view">
+
+      </ul>
+      <button class="hidden" id="currentPage"></button>
+      <ul class="mui-pagination">
+          <li  id="nextPage">
+              <a href="#">显示更多....</a>
+          </li>
+      </ul>
+      <button class="sss" id="sss">sss</button>
+      <ul class="mui-table-view">
+          <li class="mui-table-view-cell mui-media" articleid="hahah" onclick="todetial()">
+              <a href="javascript:todetial();">
+                  <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
+                  <div class="mui-media-body">
+                      幸福
+                      <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+                  </div>
+              </a>
+          </li>
+          <li class="mui-table-view-cell mui-media">
+              <a href="javascript:;">
+                  <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
+                  <div class="mui-media-body">
+                      木屋
+                      <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+                  </div>
+              </a>
+          </li>
+          <li class="mui-table-view-cell mui-media">
+              <a href="javascript:;">
+                  <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
+                  <div class="mui-media-body">
+                      CBD
+                      <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+                  </div>
+              </a>
+          </li>
+      </ul>
+	 </div>
+	 	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	   
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-email"></span>
+	        <span class="mui-tab-label">消息</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">设置</span>
+	    </a>
+	</nav>
+	</body>
+
+</html>

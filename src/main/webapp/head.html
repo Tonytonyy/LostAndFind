@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="static/css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="static/js/jquery.js"></script>
+	</head>
+
+	<body>
+		<script src="static/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()		
+		</script>
+		<script type="text/javascript">
+//			$(document).ready(function(){
+//           $("#reg").click(function(){
+//              username=$("#username").val();
+//              ps=$("#password").val();
+//              $.post("http://localhost:8080/HNUST/user/action/reg.do",{username:username,password:ps},function(data,status){
+//           	if(status=="success"){
+//           		alert('111');
+//           	}
+//           	 alert('2222'+status+data);
+//
+//           })
+//           })
+//           	
+//           
+//            })		
+          $(document).ready(function(){
+            $("#search").change(function(){
+            	//mui.alert("111111");
+            	//mui.alert($(this).val());
+            	var title=$(this).val();
+                var change=window.btoa(window.encodeURIComponent(title));
+                mui.openWindow({ 	
+               url: '/HNUST/search.html?title='+change+'&currentPage=0', 
+               id:'info'	
+                })
+            })
+            
+            
+            
+            
+           $.post("HNUST/postdemo",
+           {
+              username:'tangyu',
+              password:'123333333333hahha',
+           },function(data,status){
+            mui.alert("数据: \n" + data + "\n状态: " + status);
+           })
+           
+            //去发布界面
+            $("#lost").click(function(){
+            	mui.openWindow({
+            	 url: '/HNUST/lost.html', 
+                 id:'info'	
+            	})
+            	
+            })
+            
+            $("#find").click(function(){
+            	mui.openWindow({
+            	 url: '/HNUST/find.html', 
+                 id:'info'	
+            	})
+            	
+            })
+           
+          })
+          	
+          	
+		</script>
+		<style type="text/css">
+    	.mui-content{
+    		margin-top: 12px;
+    	}
+    	.mui-btn{
+    		width: 95%;
+    		
+    	}
+    </style>
+		<header class="mui-bar mui-bar-nav">
+		<div class="mui-input-row mui-search">
+         <input type="search" class="mui-input-clear" id="search" placeholder="在找啥">
+       </div>
+	</header>
+	<div class="mui-content">
+   <div class="mui-slider">
+    <div class="mui-slider-group ">
+    <div class="mui-slider-item"><a href="static/images/23.jpg"><img src="static/images/23.jpg" height="200px"/></a></div>
+    <div class="mui-slider-item"><a href="static/images/23.jpg"><img src="static/images/23.jpg" height="200px"/></a></div>
+    <div class="mui-slider-item"><a href="static/images/23.jpg"><img src="3.jpg" height="200px"/></a></div>
+    <div class="mui-slider-item"><a href="static/images/23.jpg"><img src="4.jpg" height="200px"/></a></div>
+    </div>
+  
+          </div>
+             <h1 align="center">欢迎你</h1>
+			<div class="mui-content-padded" align="center">
+			<button type="button" class="mui-btn mui-btn-blue" id="lost">丢了</button>
+	    	</div>
+            <div class="mui-content-padded" align="center">
+			<button type="button" class="mui-btn mui-btn-blue" id="find">捡到</button>
+	        </div>
+	         <div class="mui-content-padded" align="center">
+			<button type="button" class="mui-btn mui-btn-blue" id="myArticle">我发布的。。。</button>
+	       </div>	
+	       
+	    </div>
+	</body>
+
+</html>

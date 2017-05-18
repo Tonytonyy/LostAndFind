@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body >
+		<script src="js/mui.min.js"></script>
+        <style type="text/css">
+       .cancelstyle{background:none; 
+                  outline:none;   
+                  border:0px; 
+                  color:white;
+                  }
+    .imagehw{width:90px;
+     height:26%}
+    </style>
+		<script type="text/javascript">
+			mui.init()
+			
+		</script>
+     <form class="mui-input-group" action="http://localhost:8080/org.zsl.hnust/user/upload" method="post" enctype="multipart/form-data">
+    <div class="mui-input-row">
+        <label>标题</label>
+    <input type="text" class="mui-input-clear" placeholder="请输入用户名"/>
+    </div>
+    <div class="mui-input-ranges" style="margin: 10px 10px 20px 20px ">
+      <img src="image/1.jpg" class="imagehw" />
+      <img src="image/1.jpg" class="imagehw" />
+      <img src="image/1.jpg" class="imagehw" />
+      <img src="image/1.jpg" class="imagehw" />
+    </div>
+
+  </div>
+    	<div class="mui-input-range" style="margin: 10px 10px 20px 20px">
+    		<input id="input" type="file" name="img"  multiple class="cancelstyle">
+    		<input id="input1" type="file" name="img" multiple class="cancelstyle">
+            <input id="input2" type="file" name="img" multiple class="cancelstyle">
+            <input id="input3" type="file" name="img" multiple class="cancelstyle">
+    	</div>
+    </div>
+    <div class="mui-input-row" style="margin: 10px 10px 20px 20px  ;height: 100px; border:1px solid #CCCCCC;" >
+     <textarea class="mui-input-speech mui-input-clear" placeholder="丢了啥"></textarea>
+    </div>
+  
+    <div class="mui-button-row">
+        <button id="btn"  type="button" class="mui-btn mui-btn-primary" >确认</button>
+        <input type="submit" value="提交" class="mui-btn-blue"/>
+    </div>
+    <script>
+    	document.getElementById("input").onchange=function(){
+				alert('111111111111');
+			}
+    	document.getElementById("btn").onclick=function(){
+    		alert('22222');
+    	}
+    </script>
+</form>
+	</body>
+
+</html>

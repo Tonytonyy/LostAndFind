@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hnust.dao.IImagesDao" >
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Images" >
+    <id column="image_id" property="imageid" jdbcType="INTEGER" />
+    <result column="image_name" property="imagename" jdbcType="VARCHAR" />
+    <result column="image_href" property="imagehref" jdbcType="VARCHAR" />
+    <result column="article_id" property="articleid" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectImagesByid" resultMap="BaseResultMap" parameterType="com.cn.hnust.pojo.Images">
+   select * from images 
+     
+     where 1=1 and image_id=#{imagesid}
+  
+  </select>
+  <insert id ="insertImagelist" parameterType="java.util.List" >
+              <selectKey resultType ="java.lang.Integer" keyProperty= "id"
+                   order= "AFTER">
+                  SELECT LAST_INSERT_ID()
+              </selectKey >
+           INSERT INTO images (image_name, image_href, article_id)
+           VALUES 
+             <foreach collection ="list" item="Images" index= "index" separator =",">
+                 (
+                 #{Images.imagename}, #{Images.imagehref},
+                 #{Images.articleid}
+                 )
+             </foreach >
+   </insert >
+   <select id="selectImagesByArticleId" resultMap="BaseResultMap" parameterType="com.cn.hnust.pojo.Images">
+   select * from images 
+     
+     where 1=1 and article_id=#{articleid}
+  
+  </select>
+
+
+
+</mapper>
