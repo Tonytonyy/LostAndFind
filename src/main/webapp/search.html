@@ -34,9 +34,9 @@
           	function todetial(){
           		mui.alert(this.attr("article"));
           	}
-          	$(".mui-table-view-cell").click(function(){
-          		 mui.alert(this.attr("article"));
-
+          	$("li").click(function(){
+          	//	mui.alert("aaaaa");
+          		mui.alert($(this).find("input").val());
           	})
           	//获取URL参数
 	       function GetRequest() {
@@ -199,8 +199,12 @@
       <button class="sss" id="sss">sss</button>
       <ul class="mui-table-view">
           <li class="mui-table-view-cell mui-media" articleid="hahah" onclick="todetial()">
+          	  <input type="hidden" value="xxxxx">
               <a href="javascript:todetial();">
+              	
                   <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
+             	  <input type="hidden" value="xxxxx">
+                  
                   <div class="mui-media-body">
                       幸福
                       <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
@@ -208,6 +212,7 @@
               </a>
           </li>
           <li class="mui-table-view-cell mui-media">
+          	  <input type="hidden" value="xxxxx">
               <a href="javascript:;">
                   <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
                   <div class="mui-media-body">
