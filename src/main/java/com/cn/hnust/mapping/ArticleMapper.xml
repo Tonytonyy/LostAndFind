@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Article" >
     <id column="article_id" property="articleid" jdbcType="INTEGER" />
     <result column="article_title" property="articletitle" jdbcType="VARCHAR" />
-    <result column="article_adress" property="articleadress" jdbcType="VARCHAR" />
+    <result column="article_address" property="articleadress" jdbcType="VARCHAR" />
     <result column="article_body" property="articlebody" jdbcType="VARCHAR" />
     <result column="create_date" property="createdate" jdbcType="DATE" />
      <result column="type" property="type" jdbcType="INTEGER" />
@@ -35,4 +35,11 @@ VALUES (#{articleid,jdbcType=INTEGER},#{articletitle,jdbcType=VARCHAR},#{article
   select a.*,i.* FROM article a LEFT JOIN images i on i.article_id=a.article_id where
    a.article_title like #{title} ORDER BY a.article_id LIMIT #{star},#{end};
   </select>
+    <select id="pageByUserid" resultMap="BaseResultMap" parameterType="com.cn.hnust.pojo.Article">
+  select a.*,i.* FROM article a LEFT JOIN images i on i.article_id=a.article_id where
+   a.user_id  = #{userid} ORDER BY a.article_id LIMIT #{star},#{end};
+  </select>
+  <delete id="delectArticlebyid" parameterType="java.lang.Integer">
+     delete from article where article_id=#{articleid};
+  </delete>
 </mapper>

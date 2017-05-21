@@ -32,6 +32,14 @@ public class ArticleService implements IArticleService {
 	public List<Article> pageBylist(Integer star,Integer end,String title){
 		return articleDAO.pageByTitle(star, end, title);
 	}
+	public List<Article> pageByUserid(Integer star, Integer end, Integer userid) {
+		// TODO Auto-generated method stub
+		return articleDAO.pageByUserid(star, end, userid);
+	}
+	public void deleteArticleByid(Integer articleid) {
+		// TODO Auto-generated method stub
+		articleDAO.delectArticlebyid(articleid);
+	}
 
 	/**
 	* <p>Title: ArticleService.java<／p>

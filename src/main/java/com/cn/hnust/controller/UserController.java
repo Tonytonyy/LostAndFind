@@ -277,8 +277,57 @@ public class UserController {
 	//发布物品的详情页
 	@RequestMapping(value="detial")
 	public  @ResponseBody Article todetial(Integer artcileid){
+		
 		Article art=articleService.selectArticleById(artcileid);
+		System.out.println(art.getArticleadress());
 		return art;
 	}
+	
+	//个人发布的信息
+		@RequestMapping(value="/mypublish")
+		public @ResponseBody ArticlePage mypblist(HttpServletRequest request,Integer currentPage){
+	        //每页显示5条记录
+			//System.out.println(title+currentPage);
+			HttpSession session =request.getSession();
+			RUser user=(RUser) session.getAttribute("user");
+			Integer userid=user.getUserid();
+			List<Article> list=new ArrayList<Article>();
+			Integer pageRecord=4;
+	        if(null==currentPage){
+	        	currentPage=0;
+	        }
+	        
+		    list=articleService.pageByUserid(0, 9999, userid);
+		    for(Article a :list){
+				System.out.println(a.getArticletitle()+"--------------------------------"+a.getArticleid());
+			}
+			ArticlePage page = new ArticlePage();
+			Integer totalrecord=list.size();
+			Integer totalpage=(int) Math.ceil(totalrecord.doubleValue()/pageRecord);
+			page.setCurrentPage(currentPage);
+			page.setTotalRecords(totalrecord);
+			page.setPageRecord(pageRecord);
+			page.setTotalPage(totalpage);
+			if((currentPage*pageRecord+pageRecord)<totalrecord){
+				page.setPageList(list.subList(currentPage*pageRecord, currentPage*pageRecord+pageRecord));
+			 }else{
+					page.setPageList(list.subList(currentPage*pageRecord, totalrecord.intValue()));
+			 }
+			//page.setPageList(list.subList(4, 8));
+			for(Article a :page.getPageList()){
+				System.out.println(a.getArticletitle()+"--------------------------------"+a.getArticleid());
+			}
+			return page;
+		}
+		//删除发布的对象
+		@RequestMapping(value="deletearticle")
+		public  @ResponseBody Result deletearticle(Integer artcileid){
+		     articleService.deleteArticleByid(artcileid);
+		     Result res = new Result();
+		     res.setMsg("成功");
+		     res.setSuccess(true);
+		     return res;
+		}
+		
 	
 }

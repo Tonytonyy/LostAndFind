@@ -24,7 +24,7 @@
              data:{artcileid:articleid},
              success:function(data){
                  $("#articletitle").text(data.articletitle);
-                 $("#articleaddres").text(data.articleaddres);
+                 $("#articleaddres").text(data.articleadress);
                  $("#articlebody").text(data.articlebody);
                  for(var images in data.imageslist){
                  	if(images<4){
@@ -67,7 +67,7 @@
 	 <div class="mui-input-row" id="articleaddres">
 	 	地点:
 	 </div>
-	 <div class="mui-input-range">address:</div>
+	 <div class="mui-input-range">:</div>
 	 <div class="mui-text-justify" id="articlebody">
 	 </div>
     <div id="images">

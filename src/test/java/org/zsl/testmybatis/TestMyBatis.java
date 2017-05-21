@@ -83,6 +83,11 @@ public class TestMyBatis {
 	//	System.out.println("哈哈哈"+a);
 		//Integer num=aricleDao.createNewArt();
 	//	Integer num =articleService.getramId();
+		List<Article> list=aricleDao.pageByUserid(0, 100, 1);
+		for(Article art :list){
+			System.out.println(art.getArticlebody());
+		}
+		//aricleDao.delectArticlebyid(2);
   		}
 	}
 

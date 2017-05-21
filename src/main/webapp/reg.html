@@ -31,19 +31,15 @@
 //           
 //            })		
           $(document).ready(function(){
-             var self=plus.webview.currentWebview();
-             var name=self.name;
-             mui.alert(name);
           	 $("#reg").click(function(){
-          		 alert('1111');
-         var jsonUser=JSON.stringify({"username":$("#username").val(),"password":$("#password").val(),"userphonenumber":$("#phone").val()});
+          	 alert('1111');
+          var jsonUser=JSON.stringify({"username":$("#username").val(),"password":$("#password").val(),"userphonenumber":$("#phone").val()});
          $.ajax({
          type:'post',
          //http://localhost:8080/HNUST/
          url:'/HNUST/reguser.do',
          contentType:'application/json;charrset=utf-8',
          data:jsonUser,
-         
          success:function(data){
               if(data.success){
                 mui.alert(data.msg);

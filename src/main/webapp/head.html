@@ -37,12 +37,17 @@
             	var title=$(this).val();
                 var change=window.btoa(window.encodeURIComponent(title));
                 mui.openWindow({ 	
-               url: '/HNUST/search.html?title='+change+'&currentPage=0', 
-               id:'info'	
+                 url: '/HNUST/search.html?title='+change+'&currentPage=0', 
+                 id:'info'	
                 })
             })
             
-            
+            $("#mypublish").click(function(){
+                 mui.openWindow({   
+                 url: '/HNUST/mypublish.html?currentPage=0', 
+                 id:'info'  
+                })
+            })
             
             
            $.post("HNUST/postdemo",
@@ -106,7 +111,7 @@
 			<button type="button" class="mui-btn mui-btn-blue" id="find">捡到</button>
 	        </div>
 	         <div class="mui-content-padded" align="center">
-			<button type="button" class="mui-btn mui-btn-blue" id="myArticle">我发布的。。。</button>
+			<button type="button" class="mui-btn mui-btn-blue" id="mypublish">我发布的。。。</button>
 	       </div>	
 	       
 	    </div>

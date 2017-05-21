@@ -9,4 +9,6 @@ public interface IArticleService {
    public Integer getramId();
    public void InsertAricle(Article article);
    public List<Article> pageBylist(Integer star,Integer end,String title);
+   public List<Article> pageByUserid(Integer star,Integer end,Integer userid);
+   public void deleteArticleByid(Integer articleid);
 }
