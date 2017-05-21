@@ -83,19 +83,6 @@ public class TestMyBatis {
 	//	System.out.println("哈哈哈"+a);
 		//Integer num=aricleDao.createNewArt();
 	//	Integer num =articleService.getramId();
-        Article ar=new Article();
-        ar.setArticletitle("小昕");
-        ar.setArticleadress("shandongzibo");
-        ar.setType(1);
-        ar.setCreatedate(new Date());
-        ar.setArticlebody("小欣欣");
-        ar.setArticleid(articleService.getramId());
-        ar.setUserid(1);
-       List<Article> li=aricleDao.pageByTitle(1, 99999,"%小米%");
-          System.out.println(li.size());
-           List<Article> ll=li.subList(0, 4);
-          for(Article a :ll){
-  			System.out.println(a.getArticletitle()+a.getArticlebody()+"--------------------------------"+a.getArticleid());
   		}
 	}
-}
+

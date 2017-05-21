@@ -15,25 +15,35 @@
 			mui.init()		
 		</script>
 		<script type="text/javascript">
-//			$(document).ready(function(){
-//           $("#reg").click(function(){
-//              username=$("#username").val();
-//              ps=$("#password").val();
-//              $.post("http://localhost:8080/HNUST/user/action/reg.do",{username:username,password:ps},function(data,status){
-//           	if(status=="success"){
-//           		alert('111');
-//           	}
-//           	 alert('2222'+status+data);
-//
-//           })
-//           })
-//           	
-//           
-//            })		
-          $(document).ready(function(){
-           
-          })
-          	
+			$(document).ready(function(){
+          	function initsearch(articleid){
+            $.ajax({
+             type:'get',
+             url:'/HNUST/detial.do',
+             contentType:'application/json;charrset=utf-8',
+             data:{artcileid:articleid},
+             success:function(data){
+                 $("#articletitle").text(data.articletitle);
+                 $("#articleaddres").text(data.articleaddres);
+                 $("#articlebody").text(data.articlebody);
+                 for(var images in data.imageslist){
+                 	if(images<4){
+                       $("#images").append("<div class='mui-input-range'>  <img src="+data.imageslist[images].imagehref+" class='imagehw' height='200px' width='380px'/></div>");
+                 	}
+                 }  
+
+             }
+           })}	
+             function getQueryString(name) { 
+             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+             var r = window.location.search.substr(1).match(reg); 
+             if (r != null) return unescape(r[2]); return null; 
+            }
+
+
+            var articleid=getQueryString('articleid');
+            initsearch(articleid);
+          	})
           	
 		</script>
 		<style type="text/css">
@@ -51,31 +61,20 @@
        </div>
 	</header>
 	  <div class="mui-content">
-        <h2 align="center">丢失手机</h2>
+	   <!--title-->
+        <h2 align="center" id="articletitle"></h2>
 	 </div>
-	 <div class="mui-input-row">
-	 	联系方式:
+	 <div class="mui-input-row" id="articleaddres">
+	 	地点:
 	 </div>
 	 <div class="mui-input-range">address:</div>
-	 <div class="mui-text-justify">
-	 	小明在手机在集美大学水产学院丢失，希望
-	 	见到的通联系他这个人带给大家和干旱打开后dhdkjhj贷款灯红酒绿dkjdk
-	 	小明在手机在集美大学水产学院丢失，希望
-	 	见到的通联系他这个人带给大家和干旱打开后dhdkjhj贷款灯红酒绿dkjdk
-	 	小明在手机在集美大学水产学院丢失，希望
-	 	见到的通联系他这个人带给大家和干旱打开后dhdkjhj贷款灯红酒绿dkjdk
+	 <div class="mui-text-justify" id="articlebody">
 	 </div>
-	 <div class="mui-input-range" align="center">
-            <img src="static/images/23.jpg" align="center" id="image2" class="imagehw" height="200px" width="380px"/>
-	</div>
+    <div id="images">
 	<div class="mui-input-range">
-            <img src="static/images/23.jpg" id="image2" class="imagehw" height="200px" width="380px"/>
+            <img src="static/images/23.jpg" id="image1" class="imagehw" height="200px" width="380px"/>
 	</div>
-	<div class="mui-input-range">
-            <img src="static/images/23.jpg" id="image2" class="imagehw" height="200px" width="380px"/>
-	</div>
-	<div class="mui-input-range">
-            <img src="static/images/23.jpg" id="image2" class="imagehw" height="200px" width="380px"/>
+	
 	</div>
 		<nav class="mui-bar mui-bar-tab">
 	    <a class="mui-tab-item mui-active">

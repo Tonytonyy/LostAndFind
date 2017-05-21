@@ -14,30 +14,20 @@
 		<script type="text/javascript">
 			mui.init()		
 		</script>
-		<script type="text/javascript">
-//			$(document).ready(function(){
-//           $("#reg").click(function(){
-//              username=$("#username").val();
-//              ps=$("#password").val();
-//              $.post("http://localhost:8080/HNUST/user/action/reg.do",{username:username,password:ps},function(data,status){
-//           	if(status=="success"){
-//           		alert('111');
-//           	}
-//           	 alert('2222'+status+data);
-//
-//           })
-//           })
-//           	
-//           
-//            })		
+		<script type="text/javascript">		
           $(document).ready(function(){
-          	function todetial(){
-          		mui.alert(this.attr("article"));
-          	}
-          	$("li").click(function(){
-          	//	mui.alert("aaaaa");
-          		mui.alert($(this).find("input").val());
-          	})
+          	
+            //防止局部刷新造成界面jQuery cant work and Jump to detail interface 
+            $("body").delegate('li','click',function(){
+              mui.alert($(this).find("input").val());
+                var articleid=$(this).find("input").val();
+                mui.openWindow({  
+                 url: '/HNUST/detial.html?articleid='+articleid+'', 
+                   id:'info'  
+                })
+            })
+
+ 
           	//获取URL参数
 	       function GetRequest() {
 	        var url = location.search; //获取url中"?"符后的字串
@@ -79,28 +69,17 @@
            	var currentPage=data.currentPage;
            	var totalPage=data.totalPage;
             for(i in data.pageList){
-            	$("#list").append("<li onclick='todetial()' class='mui-table-view-cell mui-media'>  <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+data.pageList[i].articletitle+"    <p class='mui-ellipsis'>"+data.pageList[i].articletitle+".</p>    </div>  </a></li>");
+            	$("#list").append("<li  class='mui-table-view-cell mui-media'> <input type='hidden' value="+data.pageList[i].articleid+"> <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+data.pageList[i].articletitle+"    <p class='mui-ellipsis'>"+data.pageList[i].articletitle+".</p>    </div>  </a></li>");
             }  
             
             $("#currentPage").val(currentPage);
             
-            //设置当前页码
-//          if(1==totalPage){
-//          	$("#lasttPage").attr("class","mui-disabled");
-//          	$("#nextPage").attr("class","mui-disabled");
-//          }else{
-//          	if(currentPage==1){
-//          	$("#lasttPage").attr("class","mui-disabled");
-//          	}
-//          	if(totalPage==currentPage){
-//          	  $("#nextPage").attr("class","mui-disabled");
-//
-//          	}
-//          }
             
          }
-       }) 
+       })
           	}
+
+
             
             $("#nextPage").click(function(){
              var title=getQueryString("title");
@@ -120,38 +99,6 @@
             var  str=window.decodeURIComponent(window.atob(title));
             initsearch(str,currentPage);
             
-            
-//          $("#btn1").click(function(){
-//          	
-//          	var test="static/images/23.jpg";
-//          //	mui.alert(test);
-//          	//使用这个查询
-//                 
-//
-//          	 for(var i=0;i<3;i++){
-//          	  $("ul").append("<li class='mui-table-view-cell mui-media'>  <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+test+" CBD   <p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>      </div>  </a></li>");
-//          	}
-//          });
-//          $("#btn2").click(function(){
-//        
-//        $.ajax({
-//       type:'get',
-//       url:'/HNUST/search.do',
-//       contentType:'application/json;charrset=utf-8',
-//       data:{title:'小米',currentPage:'1'},
-//       success:function(data){
-//        //mui.alert("nimenhao");
-//          alert(data.currentPage);
-//          //获取查询结果并且遍历
-//         	var test="static/images/23.jpg";
-//          for(i in data.pageList){
-//          	$("ul").append("<li class='mui-table-view-cell mui-media'>  <a href='javascript:;'>  <img class='mui-media-object mui-pull-left' src='"+test+"'> <div class='mui-media-body'> "+data.pageList[i].articletitle+" CBD   <p class='mui-ellipsis'>"+data.pageList[i].articletitle+".</p>      </div>  </a></li>");
-//               
-//        }
-//       }
-//     })  
-//        
-//          });
           	
            $.post("/HNUST/postdemo.do",
            {
@@ -182,6 +129,7 @@
     	}
     </style>
 		<header class="mui-bar mui-bar-nav">
+
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">detial</h1>
        </div>
@@ -196,41 +144,7 @@
               <a href="#">显示更多....</a>
           </li>
       </ul>
-      <button class="sss" id="sss">sss</button>
-      <ul class="mui-table-view">
-          <li class="mui-table-view-cell mui-media" articleid="hahah" onclick="todetial()">
-          	  <input type="hidden" value="xxxxx">
-              <a href="javascript:todetial();">
-              	
-                  <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
-             	  <input type="hidden" value="xxxxx">
-                  
-                  <div class="mui-media-body">
-                      幸福
-                      <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-                  </div>
-              </a>
-          </li>
-          <li class="mui-table-view-cell mui-media">
-          	  <input type="hidden" value="xxxxx">
-              <a href="javascript:;">
-                  <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
-                  <div class="mui-media-body">
-                      木屋
-                      <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
-                  </div>
-              </a>
-          </li>
-          <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                  <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
-                  <div class="mui-media-body">
-                      CBD
-                      <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-                  </div>
-              </a>
-          </li>
-      </ul>
+ 
 	 </div>
 	 	<nav class="mui-bar mui-bar-tab">
 	    <a class="mui-tab-item mui-active">
