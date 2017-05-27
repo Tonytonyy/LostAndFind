@@ -1,62 +1,52 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style type="text/css">
+      body,html,#container{
+        height: 100%;
+        margin: 0px;
+      }
+    </style>
+    <title>快速入门</title>
+  </head>
+  <body>
+    <div id="container" tabindex="0"></div>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=ae094da1e6d097e940cdc8ced95a67de"></script>
+    <script src="//webapi.amap.com/ui/1.0/main.js"></script>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-        <title></title>
-        <script src="js/mui.min.js"></script>
-        <link href="css/mui.min.css" rel="stylesheet" />
-        <script type="text/javascript" charset="utf-8">
-            mui.init();
-        </script>
-    </head>
+    <script type="text/javascript">
 
-    <body>
-        <div class="mui-content">
-            <input id="iii" name="uploadfile" type="file">
-            <img id="previewImage">
-        </div>
+        var map = new AMap.Map('container',{
+            resizeEnable: true,
+            zoom: 15,//size
+            //jingweidu
+            center: [118.10143948, 24.57985114]
+        });
+        //css
+                var icon = new AMap.Icon({
+                        image: 'http://pic50.nipic.com/file/20141013/9182165_170841367151_2.jpg',
+                        size: new AMap.Size(24, 24)
+                    });        
 
-        <script type="text/javascript">
-            document.getElementById('iii').onchange = function(evt) {  
+         //     iconStyle: '//webapi.amap.com/theme/v1.3/markers/b/mark_r.png',
 
-                // 如果浏览器不支持FileReader，则不处理  
+        //gongjvtiao
+     AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView'],
+     function(){
+        map.addControl(new AMap.ToolBar());
 
-                //if (!window.FileReader) return;  
+        map.addControl(new AMap.Scale());
 
-                var files = evt.target.files;  
+        map.addControl(new AMap.OverView({isOpen:true}));
+      });
+      var marker = new AMap.Marker({
+      // icon:icon,
+       title:'hahha',
+      });
+      marker.setMap(map);
 
-                for (var i = 0, f; f = files[i]; i++) {  
-
-                    if (!f.type.match('image.*')) {  
-
-                        continue;  
-
-                    }  
-
-
-                    var reader = new FileReader();  
-
-                    reader.onload = (function(theFile) {  
-
-                        return function(e) {  
-
-                            // img 元素  
-
-                            document.getElementById('previewImage').src = e.target.result;  
-
-                        };  
-
-                    })(f);  
-
-
-                    reader.readAsDataURL(f);  
-
-                }  
-
-            }
-        </script>
-    </body>
-
+    </script>
+  </body>
 </html>

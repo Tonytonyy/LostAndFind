@@ -92,9 +92,8 @@
 					//把json格式的字符串转换成json对象
 					var jsonObj = $.parseJSON(data);
 					//返回服务器图片路径，把图片路径设置给img标签
-					$("#image1").attr("src",jsonObj.fullPath);
+					// $("#image1").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -123,7 +122,6 @@
 					//返回服务器图片路径，把图片路径设置给img标签
 					$("#image2").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -151,7 +149,7 @@
 					//返回服务器图片路径，把图片路径设置给img标签
 					$("#image3").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
+					// mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -181,7 +179,7 @@
 					//返回服务器图片路径，把图片路径设置给img标签
 					$("#image4").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
+					// mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -212,8 +210,8 @@
          data:JSON.stringify(imagelist),
          
          success:function(data){
-              if(data.success)
-	          mui.alert(data.msg);
+           //   if(data.success);
+	      //    mui.alert(data.msg);
           }
        })
        
@@ -226,8 +224,9 @@
          data:jsonUser,
          
          success:function(data){
-              if(data.success)
-	          mui.alert(data.msg);
+              if(data.success){
+                 mui.alert(data.msg);
+              }
           }
        })  
          });

@@ -51,5 +51,12 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />  
     </bean> 
+  <!-- 配置spring mvc拦截器 -->
+  <mvc:interceptors>
+       <mvc:interceptor>
+       <mvc:mapping path="/*.html"/>
+       <bean class="com.cn.hnust.Interceptor.LoginInterceptor"></bean>
+       </mvc:interceptor>
+  </mvc:interceptors>
 
 </beans>

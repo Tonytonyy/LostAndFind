@@ -161,7 +161,9 @@ public class UploadController {
 		//图片需要回显：需要图片完整路径
 		//数据库保存图片的相对路径.
         String pathRoot = request.getSession().getServletContext().getRealPath("");  
-		String fullPath="http://localhost:8080/HNUST/"+path;
+        
+		//String fullPath="http://localhost:8080/HNUST/"+path;
+		String fullPath="/HNUST/"+path;
 		System.out.println("--------------------------------------------------------"+path);
 		File f = new File(path); 
 		

@@ -19,7 +19,7 @@
           	
             //防止局部刷新造成界面jQuery cant work and Jump to detail interface 
             $("body").delegate('li','click',function(){
-              mui.alert($(this).find("input").val());
+           //  mui.alert($(this).find("input").val());
                 var articleid=$(this).find("input").val();
                 mui.openWindow({  
                  url: '/HNUST/detial.html?articleid='+articleid+'', 
@@ -51,7 +51,7 @@
              } 
              
             function tidetial(){
-            	mui.alert('111111111');
+           // 	mui.alert('111111111');
             }
                
            
@@ -95,7 +95,7 @@
             var title=getQueryString("title");
             var currentPage=$("#currentPage").text();
 
-            mui.alert(window.decodeURIComponent(window.atob(title)));
+    //        mui.alert(window.decodeURIComponent(window.atob(title)));
             var  str=window.decodeURIComponent(window.atob(title));
             initsearch(str,currentPage);
             
@@ -105,7 +105,7 @@
               username:'tangyu',
               password:'123333333333hahha',
            },function(result){
-           	mui.alert('123456789'+result.msg);
+       //    	mui.alert('123456789'+result.msg);
            	$("#welcome").text(result.msg);
            },"json");
            $("#lost").click(function(){

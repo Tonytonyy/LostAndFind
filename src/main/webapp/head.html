@@ -29,12 +29,12 @@
 //           })
 //           	
 //           
-//            })		
+//            })	
           $(document).ready(function(){
             $("#search").change(function(){
             	//mui.alert("111111");
             	//mui.alert($(this).val());
-            	var title=$(this).val();
+            	  var title=$(this).val();
                 var change=window.btoa(window.encodeURIComponent(title));
                 mui.openWindow({ 	
                  url: '/HNUST/search.html?title='+change+'&currentPage=0', 
@@ -48,15 +48,12 @@
                  id:'info'  
                 })
             })
-            
-            
-           $.post("HNUST/postdemo",
-           {
-              username:'tangyu',
-              password:'123333333333hahha',
-           },function(data,status){
-            mui.alert("数据: \n" + data + "\n状态: " + status);
-           })
+            function initheah(){
+            $.post('/HNUST/inithead.do',function(data){       
+              $("#welcome").text(data.msg);
+          })
+            }
+        
            
             //去发布界面
             $("#lost").click(function(){
@@ -69,14 +66,22 @@
             
             $("#find").click(function(){
             	mui.openWindow({
-            	 url: '/HNUST/find.html', 
+            	url: '/HNUST/find.html', 
                  id:'info'	
             	})
             	
             })
-           
+             initheah();  
+             $("#loginout").click(function(){
+                  $.post('/HNUST/loginout.do',function(data){       
+                 mui.openWindow({
+                 url:'/HNUST/index.html', 
+                 id:'info'  
+              })
+            })
+             })
+
           })
-          	
           	
 		</script>
 		<style type="text/css">
@@ -103,7 +108,7 @@
     </div>
   
           </div>
-             <h1 align="center">欢迎你</h1>
+             <h1 align="center" id="welcome">欢迎你</h1>
 			<div class="mui-content-padded" align="center">
 			<button type="button" class="mui-btn mui-btn-blue" id="lost">丢了</button>
 	    	</div>
@@ -113,7 +118,9 @@
 	         <div class="mui-content-padded" align="center">
 			<button type="button" class="mui-btn mui-btn-blue" id="mypublish">我发布的。。。</button>
 	       </div>	
-	       
+	             <div class="mui-content-padded" align="center">
+      <button type="button" class="mui-btn mui-btn-blue" id="loginout">退出</button>
+         </div>    
 	    </div>
 	</body>
 

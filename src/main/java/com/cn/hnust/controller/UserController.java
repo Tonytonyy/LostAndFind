@@ -328,6 +328,22 @@ public class UserController {
 		     res.setSuccess(true);
 		     return res;
 		}
-		
-	
+		@RequestMapping(value="inithead")
+		public  @ResponseBody Result inithead(HttpServletRequest request){
+			HttpSession hs=request.getSession();
+			RUser user=(RUser) hs.getAttribute("user");
+			Result res = new Result();
+		     res.setMsg(user.getUsername());
+		     res.setSuccess(true);
+		     return res;
+		}
+		@RequestMapping(value="loginout")
+		public  @ResponseBody Result loginout(HttpServletRequest request){
+			HttpSession hs=request.getSession();
+			hs.removeAttribute("user");
+			Result res = new Result();
+		     res.setMsg("ssss");
+		     res.setSuccess(true);
+		     return res;
+		}
 }

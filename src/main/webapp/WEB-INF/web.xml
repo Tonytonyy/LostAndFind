@@ -23,6 +23,19 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<filter>
+	  <filter-name>loginFilter</filter-name>
+	 <filter-class>com.cn.hnust.Interceptor.LoginFiitter</filter-class>
+	</filter>
+		<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/head.html</url-pattern>
+	    <url-pattern>/lost.html</url-pattern>
+	    <url-pattern>/find.html</url-pattern>
+	    <url-pattern>/search.html</url-pattern>
+	    <url-pattern>/deatil.html</url-pattern>
+	   
+	</filter-mapping>
 	<!-- Spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

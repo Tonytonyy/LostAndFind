@@ -86,7 +86,6 @@
           	$("#input3").hide();
           	$("#sub1").hide();
             $("#input").change(function(){
-            	mui.alert("11111change")
             	var option={
 				type:'POST',
 				url:'/HNUST/upload/uploadPic.do',
@@ -101,7 +100,6 @@
 					//返回服务器图片路径，把图片路径设置给img标签
 					$("#image1").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -158,7 +156,6 @@
 					//返回服务器图片路径，把图片路径设置给img标签
 					$("#image3").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -188,7 +185,6 @@
 					//返回服务器图片路径，把图片路径设置给img标签
 					$("#image4").attr("src",jsonObj.fullPath);
 					//数据库保存相对路径
-					mui.alert(jsonObj.fullPath);
 				//	$("#imgSize1").val(jsonObj.relativePath);
 				//	$("#imgSize1File").hide();
 
@@ -210,7 +206,7 @@
          	 imagelist.push({articleid:$("#articleId").val(),imagehref:$("#image4")[0].src});
 
          	// var jsonImage=JSON.stringify({"list":[{"articleid":"110","imagehref":"www.baidu.com"}]});
-         var jsonUser=JSON.stringify({"articletitle":$("#title").val(),"articleadress":$("#address").val(),"articlebody":$("#bodytext").val(),"articleid":$("#articleId").val(),"type":$("#articletype").val()});
+            var jsonUser=JSON.stringify({"articletitle":$("#title").val(),"articleadress":$("#address").val(),"articlebody":$("#bodytext").val(),"articleid":$("#articleId").val(),"type":$("#articletype").val()});
          $.ajax({
          type:'post',
          //http://localhost:8080/HNUST/
