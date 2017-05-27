@@ -1,0 +1,375 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<link href="static/css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="static/js/jquery.js"></script>
+		<script type="text/javascript" src="static/js/jquery.form.js"></script>		
+		<script src="static/js/mui.min.js"></script>
+		<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=ae094da1e6d097e940cdc8ced95a67de"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+	</head>
+
+	<body>
+		
+		<script type="text/javascript">
+			mui.init()		
+		</script>
+		 <style type="text/css">
+        .cancelstyle{background:none; 
+                  outline:none;   
+                  border:0px; 
+                  color:white;
+                  }
+        .imagehw{width:90px;
+         height:26%}
+        </style>
+		<script type="text/javascript">
+//			$(document).ready(function(){
+//           $("#reg").click(function(){
+//              username=$("#username").val();
+//              ps=$("#password").val();
+//              $.post("http://localhost:8080/HNUST/user/action/reg.do",{username:username,password:ps},function(data,status){
+//           	if(status=="success"){
+//           		alert('111');
+//           	}
+//           	 alert('2222'+status+data);
+//
+//           })
+//           })
+//           	
+//           
+//            })		
+          $(document).ready(function(){
+          	//file不显示
+          	
+          //	$("#input").hide();
+          //初始化界面
+           
+            function initAricle(){
+            $.ajax({
+             type:'get',
+             url:'/HNUST/initlostandfind.do',
+             contentType:'application/json;charrset=utf-8',
+             data:{},
+             success:function(data){
+             	//mui.alert(data.articleid);
+             	$("#articleId").val(data.articleid);
+             	$("#articletype").val(1);
+
+             },dataType:'json'})
+            }
+             initAricle();
+            
+            
+//       $.post("/HNUST/uploadAricleInit.do",
+//         function(result){
+//         	mui.alert(result.userid);
+//         	$("#welcome").text(result.msg);
+//         },"json");
+           
+           
+           
+            $("#articleId").hide();
+           // $("#articleId").val(Math.round(Math.random()*100000000));
+     //       mui.alert($("#articleId").val());
+          	$("#input1").hide();
+          	$("#input2").hide();
+          	$("#input3").hide();
+          	$("#sub1").hide();
+            $("#input").change(function(){
+            	mui.alert("11111change")
+            	var option={
+				type:'POST',
+				url:'/HNUST/upload/uploadPic.do',
+				dataType:'text',
+				data:{
+					fileName :'input',
+				},
+				success:function(data){
+					
+					//把json格式的字符串转换成json对象
+					var jsonObj = $.parseJSON(data);
+					//返回服务器图片路径，把图片路径设置给img标签
+					// $("#image1").attr("src",jsonObj.fullPath);
+					//数据库保存相对路径
+				//	$("#imgSize1").val(jsonObj.relativePath);
+				//	$("#imgSize1File").hide();
+
+					
+				}
+				
+			}; 
+		    $("#itemForm").ajaxSubmit(option);
+             $("#input").hide();
+             $("#input1").show();
+            });
+            
+             $("#input1").change(function(){
+            	mui.alert("11111change")
+            	var option={
+				type:'POST',
+				url:'/HNUST/upload/uploadPic.do',
+				dataType:'text',
+				data:{
+					fileName :'input1',
+				},
+				success:function(data){
+					
+					//把json格式的字符串转换成json对象
+					var jsonObj = $.parseJSON(data);
+					//返回服务器图片路径，把图片路径设置给img标签
+					$("#image2").attr("src",jsonObj.fullPath);
+					//数据库保存相对路径
+				//	$("#imgSize1").val(jsonObj.relativePath);
+				//	$("#imgSize1File").hide();
+
+					
+				}
+				
+			}; 
+		    $("#itemForm").ajaxSubmit(option);
+             $("#input1").hide();
+             $("#input2").show();
+            });
+             $("#input2").change(function(){
+            	
+            	var option={
+				type:'POST',
+				url:'/HNUST/upload/uploadPic.do',
+				dataType:'text',
+				data:{
+					fileName :'input2',
+				},
+				success:function(data){
+					
+					//把json格式的字符串转换成json对象
+					var jsonObj = $.parseJSON(data);
+					//返回服务器图片路径，把图片路径设置给img标签
+					$("#image3").attr("src",jsonObj.fullPath);
+					//数据库保存相对路径
+					// mui.alert(jsonObj.fullPath);
+				//	$("#imgSize1").val(jsonObj.relativePath);
+				//	$("#imgSize1File").hide();
+
+					
+				}
+				
+			}; 
+ 
+		    $("#itemForm").ajaxSubmit(option);
+		    $("#input2").hide();
+            $("#input3").show();
+            });
+                       
+       $("#input3").change(function(){
+            	
+            	var option={
+				type:'POST',
+				url:'/HNUST/upload/uploadPic.do',
+				dataType:'text',
+				data:{
+					fileName :'input3',
+				},
+				success:function(data){
+					
+					//把json格式的字符串转换成json对象
+					var jsonObj = $.parseJSON(data);
+					//返回服务器图片路径，把图片路径设置给img标签
+					$("#image4").attr("src",jsonObj.fullPath);
+					//数据库保存相对路径
+					// mui.alert(jsonObj.fullPath);
+				//	$("#imgSize1").val(jsonObj.relativePath);
+				//	$("#imgSize1File").hide();
+
+					
+				}
+				
+			}; 
+ 
+		    $("#itemForm").ajaxSubmit(option);
+            });
+         $("#sub2").click(function(){
+         	 var imagelist=new Array();
+         	// mui.alert($("#image2").src);
+         	 
+         	 imagelist.push({articleid:$("#articleId").val(),imagehref:$("#image1")[0].src});
+         	 
+        	 imagelist.push({articleid:$("#articleId").val(),imagehref:$("#image2")[0].src});
+         	 imagelist.push({articleid:$("#articleId").val(),imagehref:$("#image3")[0].src});
+         	 imagelist.push({articleid:$("#articleId").val(),imagehref:$("#image4")[0].src});
+
+         	// var jsonImage=JSON.stringify({"list":[{"articleid":"110","imagehref":"www.baidu.com"}]});
+         var jsonUser=JSON.stringify({"articletitle":$("#title").val(),"articleadress":$("#address").val(),"articlebody":$("#bodytext").val(),"articleid":$("#articleId").val(),"type":$("#").val()});
+         $.ajax({
+         type:'post',
+         //http://localhost:8080/HNUST/
+         url:'/HNUST/uploadImages.do',
+         contentType:'application/json;charrset=utf-8',
+         data:JSON.stringify(imagelist),
+         
+         success:function(data){
+           //   if(data.success);
+	      //    mui.alert(data.msg);
+          }
+       })
+       
+       //var jsonImage=JSON.stringify({"list":[{"articleid":"110","imagehref":"www.baidu.com"}]}),
+        $.ajax({
+         type:'post',
+         //http://localhost:8080/HNUST/
+         url:'/HNUST/uploadAricle.do',
+         contentType:'application/json;charrset=utf-8',
+         data:jsonUser,
+         
+         success:function(data){
+              if(data.success){
+                 mui.alert(data.msg);
+              }
+          }
+       })  
+         });
+         
+         })
+          	
+          	
+		</script>
+		<script type="text/javascript">
+/***************************************
+由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+***************************************/
+    var map, geolocation;
+    //加载地图，调用浏览器定位服务
+    map = new AMap.Map('container', {
+        resizeEnable: false
+    });
+    map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition:'RB'
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+    //解析定位结果
+    function onComplete(data) {
+        var str=['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+       // var lnglatXY=[data.position.getLng(),data.position.getLat()];//地图上所标点的坐标
+        var lnglatXY=[116.396574, 39.992706];//地图上所标点的坐标
+        $("#address").val(data.position.getLng()+'?'+data.position.getLat());
+    //     mui.alert(status);
+    //    geocoder.getAddress(lnglatXY, function(status, result) {
+    // if (status === 'complete' && result.info === 'OK') {
+    //    //获得了有效的地址信息:
+    //    //即，result.regeocode.formattedAddress
+    //     $("#address").val('11111111');
+    //     }else{
+    //    //获取地址失败
+    //      $("#address").val('getCurrentPosition error');
+    //     }
+     // });          
+              
+    }
+
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById('tip').innerHTML = '定位失败';
+    }
+  var lnglatXY=[116.396574, 39.992706];//地图上所标点的坐标
+
+
+</script>
+		
+		<style type="text/css">
+    	.mui-content{
+    		margin-top: 12px;
+    	}
+    	.mui-btn{
+    		width: 95%;
+    		
+    	}
+    </style>
+		<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Lost and find</h1>
+	</header>
+	<div class="mui-content">
+	     <div id='container' hidden="true"></div>
+         <div id="tip"></div>
+		<form id="itemForm" class="mui-input-group" action="">
+			<div class="mui-input-row">
+				<label>标题</label>
+				<input type="text" class="mui-input-clear" placeholder="" id="title">
+			</div>
+			<div class="mui-input-row">
+				<label>地点</label>
+				<input type="text" class="mui-input-clear" placeholder="" id="address">
+				<input type="hidden" id="articletype"/>
+			</div>
+           
+             
+           <input type="hidden" id="articleId" />
+			<div class="" >
+            <img src="static/images/23.jpg" id="image1"  height="90px" width="90px"/>
+            <img src="static/images/23.jpg" id="image2" class="imagehw" height="90px" width="90px"/>
+            <img src="static/images/23.jpg" id="image3" class="imagehw" height="90px" width="90px"/>
+            <img src="static/images/23.jpg" id="image4" class="imagehw" height="90px" width="90px"/>
+			</div>
+			<div class="mui-input-range" style="margin: 10px 10px 20px 20px">
+    		<input id="input" type="file" name="input"  value="input" class="cancelstyle">
+    		<input id="input1" type="file" name="input1"  class="cancelstyle">
+            <input id="input2" type="file" name="input2"  class="cancelstyle">
+            <input id="input3" type="file" name="input3"  class="cancelstyle">
+    	   </div>
+    	   <div class="mui-input-row" style="margin: 10px 10px 20px 20px  ;height: 150px; border:1px solid #CCCCCC;" >
+             <textarea class="mui-input-speech mui-input-clear" id="bodytext" placeholder="请输入...."></textarea>
+          </div>
+         <!-- <div class="mui-content-padded" align="center">-->
+         	<div class="mui-input-range">
+			<button type="submit" class="mui-btn mui-btn-blue" id="sub1">发布</button>
+			
+
+		</div>
+		<div class="mui-input-range">
+		<button type="button" id="sub2" class="mui-btn mui-btn-blue">发布</button>
+          
+		</div>
+		 
+		</form>
+		
+		<label>
+
+
+
+　　    </label>
+        
+	</div>
+			<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	   
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-email"></span>
+	        <span class="mui-tab-label">消息</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">设置</span>
+	    </a>
+	</nav>
+	</body>
+
+</html>

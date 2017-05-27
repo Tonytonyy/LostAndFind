@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="static/css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="static/js/jquery.js"></script>
+	</head>
+
+	<body>
+		<script src="static/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()		
+		</script>
+		<script type="text/javascript">		
+          $(document).ready(function(){
+          	
+            //防止局部刷新造成界面jQuery cant work and Jump to detail interface schakan
+            $("body").delegate('.mui-btn-blue','click',function(){
+            	//var obj=$(this).parent().prev();
+                var articleid=$(this).val();
+                mui.openWindow({  
+                 url: '/HNUST/detial.html?articleid='+articleid+'', 
+                   id:'info'  
+                })
+            })
+            $("body").delegate('.mui-btn-red','click',function(){
+            	//var obj=$(this).parent().prev();
+                mui.alert($(this).val());
+                var articleid=$(this).val();
+                // mui.openWindow({  
+                //  url: '/HNUST/detial.html?articleid='+articleid+'', 
+                //    id:'info'  
+                // })
+     $.ajax({
+             type:'get',
+             url:'/HNUST/deletearticle.do',
+             contentType:'application/json;charrset=utf-8',
+             data:{artcileid:articleid},
+             success:function(data){            
+             mui.alert('delete success');
+         }
+       })
+         
+            })
+ 
+          	//获取URL参数
+	       function GetRequest() {
+	        var url = location.search; //获取url中"?"符后的字串
+	        var theRequest = new Object();
+	      if (url.indexOf("?") != -1) {
+	         var str = url.substr(1);
+	         strs = str.split("&");
+	        for(var i = 0; i < strs.length; i ++) {
+	          theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+	       }
+	     }
+	       return theRequest;
+ 	    } 
+          	
+          	
+          	   //根据url获取参数
+            function getQueryString(name) { 
+             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+             var r = window.location.search.substr(1).match(reg); 
+             if (r != null) return unescape(r[2]); return null; 
+             } 
+             
+          
+               
+           
+          	function initsearch(currentPage){
+            $.ajax({
+             type:'get',
+             url:'/HNUST/mypublish.do',
+             contentType:'application/json;charrset=utf-8',
+             data:{currentPage:currentPage},
+             success:function(data){
+          //mui.alert("nimenhao");
+            //alert(data.currentPage);
+            //获取查询结果并且遍历
+           	var test="static/images/23.jpg";
+           	var currentPage=data.currentPage;
+           	var totalPage=data.totalPage;
+            for(i in data.pageList){
+            	$("#mytitles").append("<li class='mui-input-row '> "+data.pageList[i].articletitle+" <input type='hidden' ><button type='button' value="+data.pageList[i].articleid+" class='mui-btn mui-btn-blue'>look</button><button type='button' value="+data.pageList[i].articleid+" class='mui-btn mui-btn-red'>detele</button></li>")
+            }  
+            
+            $("#currentPage").val(currentPage);
+            
+            
+         }
+       })
+          	}
+
+
+            
+            $("#nextPage").click(function(){
+            // var title=getQueryString("title");
+             var currentPage=$("#currentPage").val();
+            //mui.alert(window.decodeURIComponent(window.atob(title)));
+           //  var  str=window.decodeURIComponent(window.atob(title));
+             initsearch(currentPage+1);
+            })
+          	
+          	 //初始化界面
+          	 //获取64base
+             //将64位base转化成参数
+            //var title=getQueryString("title");
+            var currentPage=$("#currentPage").text();
+            initsearch(currentPage);
+            
+          	
+ 
+           $("#lost").click(function(){
+           	mui.openWindow({
+             url: '/HNUST/upload.html', 
+             id:'info'
+           	});
+           })
+           
+          })
+          	
+          	
+		</script>
+		<style type="text/css">
+    	.mui-content{
+    		margin-top: 12px;
+    	}
+    	.mui-btn{
+    		width: 95%;
+    		
+    	}
+    </style>
+		<header class="mui-bar mui-bar-nav">
+
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">detial</h1>
+       </div>
+	</header>
+	  <div class="mui-content">
+	  <ul id="mytitles">  
+      </ul>          
+      <button class="hidden" id="currentPage" value="0"></button>
+      <ul class="mui-pagination">
+          <div id="nextPage">
+              <a href="#">显示更多....</a>
+          </div>
+      </ul>
+ 
+	 </div>
+
+	</body>
+
+</html>
