@@ -5384,3 +5384,8 @@ Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionExcep
 [INFO] [2017-05-27 03:21:38][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
 [INFO] [2017-05-27 03:21:38][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
 [INFO] [2017-05-27 03:21:39][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@3532ec19: startup date [Sat May 27 03:21:38 CST 2017]; root of context hierarchy
+[INFO] [2017-06-17 23:35:11][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2017-06-17 23:35:12][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@3532ec19: startup date [Sat Jun 17 23:35:12 CST 2017]; root of context hierarchy
+[INFO] [2017-06-17 23:35:12][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2017-06-17 23:35:12][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2017-06-17 23:35:13][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@3532ec19: startup date [Sat Jun 17 23:35:12 CST 2017]; root of context hierarchy
